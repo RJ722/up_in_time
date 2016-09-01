@@ -14,7 +14,8 @@ When we reach alarm_time, we can ring the alarm and display text_message if any.
 		<TITLE>Happy Alarms</TITLE>
 	</HEAD>
 	<BODY>
-		<h1> Your alarm for {{alarm_time}} </h1>
+	{% load tz %}
+		<h1> Your alarm for {{ alarm_time }} </h1>
 		<p>
 			<BR>
 			Hope so that I woke you up!

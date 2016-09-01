@@ -1,16 +1,33 @@
+import datetime
+import unicodedata
+import webbrowser
+import time
+import pytz
+
 from django.shortcuts import render, redirect
-import datetime, unicodedata, webbrowser, time
-from alarm.models import Alarm
+from alarm.models     import Alarm
+from django.utils     import timezone
+from django.utils.timezone import localtime
 
 ###################################################################################
+"""
+Use datetime.datetime objects for storing time
+"""
+###################################################################################
 def check_alarm_time(alarm_time):
-	# Consider alarm_time is a string(strftime)
-	now = datetime.datetime.now().strftime("%H:%M")
+	"""
+	Checks if the alarm_time is in future.
+	"""
+	# Consider alarm_time is a datetime object.
+	now = timezone.now()
 	if not alarm_time >= now:
 		return False
 	return True
 
-def check_and_render(request, alarm_time, s_dict, errors):
+def check(request, alarm_time, s_dict, errors):
+	"""
+	A wrapper around check_alarm_time.
+	"""
 	if not check_alarm_time(alarm_time):
 		error = "Please Enter a future time"
 		errors.append(error)
@@ -52,6 +69,12 @@ def check_and_save(request, alarm_time):
 
 	current_alarm.save()
 
+def convert_to_utc(alarm_time):
+	local = timezone.get_current_timezone()
+	local_dt = local.localize(alarm_time, is_dst=None)
+	utc_dt = local_dt.astimezone(pytz.utc)
+	return utc_dt
+
 #####################################################################################
 
 def alarm(request):
@@ -65,26 +88,26 @@ def alarm(request):
 		
 		# Convert from unicode to python string
 		alarm_time = uni_to_str(alarm_time_u)
-		
+		print alarm_time
+
 		# Make datetime objects.
 		try:
-			alarm_time = datetime.datetime.strptime(alarm_time, "%H:%M")
+			alarm_time = datetime.datetime.strptime(alarm_time, "%H:%M").time()
 		except ValueError:
 			errors.append("Please enter valid time.")
 			return render(request, "index.html", {'errors' : errors})
 		
-		now = datetime.datetime.now()
+		now = timezone.now()
+		date_today = timezone.now().date()
+		alarm_time = timezone.datetime.combine(date_today, alarm_time)
+		alarm_time = convert_to_utc(alarm_time)
 		
 		# Write it to database
 		check_and_save(request, alarm_time)
 		
-		# Convert them from datetime objects to python strings
-		now = datetime.datetime.now().strftime("%H:%M")
-		alarm_time = alarm_time.strftime("%H:%M")
-		
 		# Preparing HTML variables.
 		s_dict = {"alarm_time" : alarm_time, 'now' : now}
-		s_dict = check_and_render(request, alarm_time, s_dict, errors)
+		s_dict = check(request, alarm_time, s_dict, errors)
 		
 		if not errors:
 			return redirect('/success')
@@ -97,20 +120,18 @@ def alarm(request):
 		duration = uni_to_str(duration_u)
 		(alarm_hours, alarm_minutes) = get_alarm_time_from_duration(duration)
 		
-		# Create datetime objects
-		now = datetime.datetime.now()
+		# Create time objects
+		now = timezone.now()
 		alarm_time = now + datetime.timedelta(hours = alarm_hours, minutes = alarm_minutes)
+		print "now in durationm cell is %s" % now
+		print "alarm_time in duration cell is %s" % (alarm_time)
 		
 		# Save the ip and time in database
 		check_and_save(request, alarm_time)	
 		
-		# Convert the time objects to string formats.
-		now = now.strftime("%H:%M")
-		alarm_time = alarm_time.strftime("%H:%M")
-		
 		# Prepare HTML variables.
 		s_dict = {"alarm_time" : alarm_time, 'now' : now}
-		s_dict = check_and_render(request, alarm_time, s_dict, errors)
+		s_dict = check(request, alarm_time, s_dict, errors)
 		
 		if not errors:
 			return redirect('/success')
@@ -118,17 +139,19 @@ def alarm(request):
 	# If no request.
 	if request.POST.get("alarm_time", None) == "":
 		errors.append("Please enter valid Time")
-	return render(request, "index.html", {"now": datetime.datetime.now(), 'errors': errors,})
+	return render(request, "index.html", {"now": localtime(timezone.now()), 'errors': errors,})
 
 def create_alarm(request):
 	ip = get_client_ip(request)
-	alarm_time = datetime.datetime.now()
+	alarm_time = timezone.now()
 	for alarm in Alarm.objects.all():
 		if ip == alarm.ip_address:
 			alarm_time = alarm.alarm_time
 			break
 
-	alarm_time = alarm_time.strftime("%H:%M:%S")
-	now = datetime.datetime.now().strftime("%H:%M")
-	s_dict = {"alarm_time" : alarm_time, 'now' : now}
+	now = timezone.now()
+
+	# Use localtime for display
+	alarm_time_local = localtime(alarm_time)
+	s_dict = {"alarm_time" : alarm_time_local, 'now' : now}
 	return render(request, "success.html", s_dict)
