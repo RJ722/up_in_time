@@ -1,5 +1,5 @@
+.gitignore
 *.pyc
 alarm/*.pyc
 mysite/*.pyc
-alarm/migrations/0002_auto_20160831_2200.py
-.gitignore
+alarm/migrations/*.py

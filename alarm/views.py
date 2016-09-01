@@ -35,9 +35,15 @@ def check(request, alarm_time, s_dict, errors):
 		return s_dict
 
 def uni_to_str(uni):
+	"""
+	Converts the given unicode string to a pythonic one.
+	"""
 	return unicodedata.normalize('NFKD', uni).encode('ascii','ignore')
 
 def get_alarm_time_from_duration(duration):
+	"""
+	Rteurns a tuple of alarm_hours and alarm_minutes when duration (string) is given.
+	"""
 	try:
 		alarm_hours = int(duration[:2])
 		alarm_minutes = int(duration[3:])
@@ -47,6 +53,9 @@ def get_alarm_time_from_duration(duration):
 	return (alarm_hours, alarm_minutes)
 
 def get_client_ip(request):
+	"""
+	Returns client IP
+	"""
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[0]
@@ -55,6 +64,10 @@ def get_client_ip(request):
     return ip
 
 def check_and_save(request, alarm_time):
+	"""
+	For a particular IP, writes the given alarm_time in the database.
+	Updates the time if time already present.
+	"""
 	ip = get_client_ip(request)
 	current_alarm = None
 	for alarm in Alarm.objects.all():
@@ -70,6 +83,9 @@ def check_and_save(request, alarm_time):
 	current_alarm.save()
 
 def convert_to_utc(alarm_time):
+	"""
+	Takes naive alarm_time in local timezone format and converts to UTC aware alarm_time.
+	"""
 	local = timezone.get_current_timezone()
 	local_dt = local.localize(alarm_time, is_dst=None)
 	utc_dt = local_dt.astimezone(pytz.utc)
