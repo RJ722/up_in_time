@@ -10,9 +10,11 @@ from django.utils     import timezone
 from django.utils.timezone import localtime
 
 ###################################################################################
-"""
-Use datetime.datetime objects for storing time
-"""
+
+# Use datetime.datetime AWARE objects for storing time and that only in UTC
+# When taking input from the user, always convert it from locatime to UTC and while 
+#  rendering display it the local timezone. 
+
 ###################################################################################
 def check_alarm_time(alarm_time):
 	"""
@@ -56,12 +58,12 @@ def get_client_ip(request):
 	"""
 	Returns client IP
 	"""
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
+	x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+	if x_forwarded_for:
+		ip = x_forwarded_for.split(',')[0]
+	else:
+		ip = request.META.get('REMOTE_ADDR')
+	return ip
 
 def check_and_save(request, alarm_time):
 	"""
@@ -139,8 +141,9 @@ def alarm(request):
 		# Create time objects
 		now = timezone.now()
 		alarm_time = now + datetime.timedelta(hours = alarm_hours, minutes = alarm_minutes)
-		print "now in durationm cell is %s" % now
-		print "alarm_time in duration cell is %s" % (alarm_time)
+		#print "Aar Hours : %s Alar inutes: %s" % (alarm_hours, alarm_minutes)
+		#print "now in durationm cell is %s" % now
+		#print "alarm_time in duration cell is %s" % (alarm_time)
 		
 		# Save the ip and time in database
 		check_and_save(request, alarm_time)	
