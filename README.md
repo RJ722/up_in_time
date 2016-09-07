@@ -13,7 +13,9 @@ It is a django-powered web app which can create reminders or alarms just by a si
 
 ##Still To-Do:
 
-* Give user the choice for entering in either the 24 hr system or 12 hr system
+* Correct the way it gives error report.
+* Add a placeholder on time input so the user knows the format.
+* Give user the choice for entering in either the 24 hr system or 12 hr system.
 * ~~Do something with the timezone, it is getting really getting conusing.~~
 * Obviously, give it some *better* looks.
 * ~~Add a level of validation for IP and time.~~

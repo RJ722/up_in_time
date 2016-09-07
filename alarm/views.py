@@ -93,18 +93,22 @@ def alarm(request):
 	# 3. VALIDATE THE INPUT
 	# 4. IF ANY ERRORS FOUND, TE\HEN REPORT IT TO THE USER
 	# 5. WRITE IT TO THE DATABASE
+	
+	time_form = TimeForm()
+	duration_form = DurationForm()
+	errors = []
+	now = timezone.now()	
+	s_dict = {'time_form': time_form, 'duration_form': duration_form, 'now': now, 'errors' : errors}
 	if request.method == 'POST':
-		for a in request.POST:
-			print request.POST.get(a, None)
-		errors = []
 		# Check wether the user has given alarm_time or alarm_duration.
-		if "alarm_time" in request.POST:
+		if "alarm_time" in request.POST and request.POST.get('alarm_time')!= None:
 			# Create the time_form instance.
 			time_form = TimeForm(request.POST)
+			s_dict['time_form'] = time_form
 			print "Form1 is %s" % time_form
 			# Validate the user input
 			if time_form.is_valid():
-				# Take input from the user.
+				# Extract input from user given data.
 				cd = time_form.cleaned_data
 				alarm_time = cd['alarm_time']
 				# Convert the alarm_time into aware datetime object.
@@ -119,19 +123,16 @@ def alarm(request):
 					return redirect('/success')
 				# If future time entered, display the error message.
 				else:
-					errors.append("Please enter Future time.")
-					return render(request, "index.html", {'time_form'
-					:time_form, 'errors' : errors}) 
+					s_dict['errors'].append("Please enter Future time.")
+					return render(request, "index.html", s_dict) 
 			# Report if user has entered invalid input.
 			else:
-				return render(request, "index.html", {'time_form'
-					:time_form, 'errors' : time_form.errors})
+				return render(request, "index.html", s_dict)
 
+		# Check if the user has entered data in the duration form
 		if "alarm_duration" in request.POST:
-			alarm_duration = request.POST.get('alarm_duration', None)
 			duration_form = DurationForm(request.POST)
-			#print "\n\n\n\n\n\n\n DURATION FORM: \n %s \nALARM DURATION: %s \n\n\n\n\n\n\n" % (duration_form, alarm_duration)
-			print "duration_form is_valid : %s" % (duration_form.is_valid())
+			s_dict['duration_form'] = duration_form 
 			print "Errors in duration for: %s" % (duration_form.errors)
 			if duration_form.is_valid():
 				cd = duration_form.cleaned_data
@@ -148,19 +149,15 @@ def alarm(request):
 					return redirect('/success')
 				# If future time entered, display the error message.
 				else:
-					errors.append("Please enter Future time.")
-					return render(request, "index.html", {'time_form' : time_form, '									errors' : errors})
+					s_dict['errors'].append("Please enter Future time.")
+					return render(request, "index.html", s_dict)
 			# Report if user has entered invalid input.
 			else:
 				print duration_form
 				print duration_form.errors
-				return render(request, "index.html", {'duration_form'
-					:duration_form, 'errors' : duration_form.errors})
+				return render(request, "index.html", s_dict)
 	else:
-		time_form = TimeForm()
-		duration_form = DurationForm()
-		s_dict = {'time_form': time_form, 'duration_form': duration_form, 'now': timezone.now()}
-	return render(request, 'index.html', s_dict)
+		return render(request, 'index.html', s_dict)
 
 	
 def create_alarm(request):
