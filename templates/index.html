@@ -13,14 +13,27 @@
 			<font color="red">{{error}}</font>
 			<BR>
 		{% endfor %}
-		<form action = "" method = "post" >{% csrf_token %}
-			<input type = 'time' name = "alarm_time">
+		
+		<form action = "" method = "post" >
+		
+			<table border="3">
+            	{{ time_form.as_table }}	
+        	</table>
+        	{% csrf_token %}
 			<input type = "submit" value = "Yep! Wake me UP!">
 		</form>
-		<form action="" method = "post">{% csrf_token %}
-			or specify the duration: <input type="time" name="alarm_duration">
+		
+		<form action="" method = "post">
+		
+			or specify the duration: 
+			<table border="3">
+				{{ duration_form.as_table }}
+			</table>
+			{% csrf_token %}
 			<input type = "submit" value = "Rest that long">
+		
 		</form>
+		
 		<h3>It's now {{now}}</h3>
 	</BODY>
 </HTML>

@@ -9,25 +9,15 @@ from alarm.models     import Alarm
 from django.utils     import timezone
 from django.utils.timezone import localtime
 
-def check_alarm_time(alarm_time):
+def check(alarm_time):
 	"""
 	Checks if the alarm_time is in future.
 	"""
 	# Consider alarm_time is a datetime object.
 	now = timezone.now()
-	if not alarm_time >= now:
-		return False
-	return True
-
-def check(request, alarm_time, s_dict, errors):
-	"""
-	A wrapper around check_alarm_time.
-	"""
-	if not check_alarm_time(alarm_time):
-		error = "Please Enter a future time"
-		errors.append(error)
-		s_dict["errors"] = error
-		return s_dict
+	if alarm_time >= now:
+		return True
+	return False
 
 def uni_to_str(uni):
 	"""
