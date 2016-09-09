@@ -2,7 +2,6 @@ import datetime
 import unicodedata
 import webbrowser
 import time
-import pytz
 
 from django.shortcuts import render, redirect
 from alarm.models     import Alarm

@@ -37,7 +37,6 @@ It is a django-powered web app which can create reminders or alarms just by a si
 ## Dependencies
 
 * python
-* pytz 
 * django v1.9.8
 * Make sure that pop ups are allowed in your browser.
 

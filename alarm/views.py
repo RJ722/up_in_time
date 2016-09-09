@@ -2,7 +2,6 @@ import datetime
 import unicodedata
 import webbrowser
 import time
-import pytz
 
 from django.shortcuts import render, redirect
 from alarm.models     import Alarm
@@ -174,3 +173,4 @@ def create_alarm(request):
 	alarm_time_local = localtime(alarm_time)
 	s_dict = {"alarm_time" : alarm_time_local, 'now' : now}
 	return render(request, "success.html", s_dict)
+	
