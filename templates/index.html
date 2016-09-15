@@ -1,26 +1,111 @@
-<DOCTYPE HTML5>
-<HTML>
-	<HEAD>
-		{% load staticfiles %}
-		<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon"/>
-		<TITLE>
-			Set an Alarm
-		</TITLE>
-	</HEAD>
-	<BODY>
-		<h1>At what time should I wake you up?</h1>
+{% extends "base.html" %}
+	{% block header %}
+		<BR> <BR><BR>
+		THIS IS HEADER
+		<BR><BR> 
+	{% endblock %}
+	{% block body %}
 		{% for error in errors %}
-			<font color="red">{{error}}</font>
+			<div class = "error modal">
+				<font color="red">{{error}}</font>
+			</div>
 			<BR>
 		{% endfor %}
-		<form action = "" method = "post" >{% csrf_token %}
-			<input type = 'time' name = "alarm_time">
-			<input type = "submit" value = "Yep! Wake me UP!">
-		</form>
-		<form action="" method = "post">{% csrf_token %}
-			or specify the duration: <input type="time" name="alarm_duration">
-			<input type = "submit" value = "Rest that long">
-		</form>
-		<h3>It's now {{now}}</h3>
-	</BODY>
-</HTML>
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'alarm/CSS/index.css' %}">
+		<table align = "center" border="0" class="central_table" width = "100%" cellspacing= "10px" border="1">
+		<tr>
+		<td width="40%" class = "thought_container">
+			<div class = "thought">
+				<div class = "thought_header"></div>
+					Nothing valuable can be lost by taking time.
+				<div class = "author">
+					- Abraham Lincoln
+				</div>
+			</div>
+		</td>
+		<td width="50%" align="right" style = "padding-right: 20px;" rowspan="3">
+			<table class="main_form" width = "95%" border="0">
+				<tr>
+					<th colspan = "2" style="padding-left: 20px;">
+					TEST ME! SET AN ALARM  
+					</th>
+				</tr>
+				<tr>
+					<td align = "center" colspan="2" class = "current_time">
+							It's now: <B> {{now}} </B> 
+					</td>
+				</tr>
+				<tr>
+					<td align = "center" colspan="2">	
+						<form action = "" method = "post" >
+							{% csrf_token %}
+							<div class = "prompt">
+								When would you like to be up for work ?
+							</div>
+				</tr>
+				<tr>
+							<td align = "center" width="55%" style="padding-left: 15px;">
+								<input type = 'time' name = "alarm_time" value="21:00">
+							</td>
+							<td align = "center" >
+							<input type = "submit" value = "Drag me to bed!" class="button">
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align = "center">
+						<div class = "request">
+							(Time in 24 hour format.)
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td align = "center" colspan="2">
+						<form action="" method = "post">{% csrf_token %}
+							<div class = "prompt">
+								or wanna specify a duration instead: 
+							</div> 
+				</tr>
+				<tr>
+					<td align = "center" style="padding-left: 15px;"">
+							<input type="time" name="alarm_duration" value="00:15">
+					</td>
+					<td align = "center">	
+							<input type = "submit" value = "Wake me up" class = "button">
+						</form>
+					</td>
+				</tr>
+			</table>
+		</td>
+		</tr>
+		<tr>
+			<td width="40%" class = "thought_container">
+				<div class = "thought">
+					<div class = "thought_header"></div>
+					Better three hours too soon than a minute too late. 
+					<div class="author">
+						-William Shakespeare
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="40%" class = "thought_container">
+				<div class = "thought">
+					<div class = "thought_header"></div>
+					We must use time wisely and forever realize that the time is always ripe to do right. 
+					<div class="author">
+						-Nelson Mandela
+					</div>
+				</div>
+			</td>
+		</tr>
+		</table>
+	{% endblock %}
+	{% block footer %}
+		<BR> <BR><BR>
+		THIS IS FOOTER!
+  		<BR><BR><BR> 
+	{% endblock %}
+

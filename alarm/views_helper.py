@@ -15,7 +15,7 @@ def check_alarm_time(alarm_time):
 	"""
 	# Consider alarm_time is a datetime object.
 	now = timezone.now()
-	if not alarm_time >= now:
+	if not alarm_time > now:
 		return False
 	return True
 

@@ -31,10 +31,3 @@ It is a django-powered web app which can create reminders or alarms just by a si
 * Make the website responsive.
 * Add the facility for the users to add custom Youtube videos or uploaded Audios or audio links to be served as alarm.
 
-## Dependencies
-
-* python
-* pytz 
-* django v1.9.8
-* Make sure that pop ups are allowed in your browser.
-

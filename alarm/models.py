@@ -7,4 +7,4 @@ class Alarm(models.Model):
 	ip_address = models.GenericIPAddressField()
 
 	def __unicode__(self):
-		return u'time: %s for IP : %s' % (self.alarm, self.ip_address)
+		return u'time: %s for IP : %s' % (self.alarm_time, self.ip_address)

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>
+			{% block title %}
+				Test Time with us!
+			{% endblock %}
+		</title>
+		{% load staticfiles %}
+		<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon"/>
+		{% block main_css %}
+			<link rel="stylesheet" type="text/css" href="{% static 'alarm/CSS/base.css' %}">
+		{% endblock %}
+	</head>
+	<body>
+	<table id = "main_table" width = "85%" border="0" align = "center">
+		<tr width = "100%">
+			<td>
+				{% block header %}
+					This is an empty header template.
+				{% endblock %}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{% block body %}
+					This is an empty body template.
+				{% endblock %}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{% block footer %}
+					This is an empty footer template.
+				{% endblock %}
+			</td>
+		</tr>
+	</table>
+		
+	</body>
+</html>
