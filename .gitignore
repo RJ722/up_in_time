@@ -1,0 +1,4 @@
+*.pyc
+alarm/*.pyc
+mysite/*.pyc
+alarm/migrations/*.py
