@@ -2,9 +2,13 @@
 It is a django-powered web app which can create reminders or alarms just by a single click.
 
 ## Installation
-* Just clone the git repo.
-* OPen the terminal and cd into the folder 
-* Run ```./manage.py runserver```
+* Make sure you have Python installed (if possible, use 2.x so that you wouldn't have to alter print statements written here and there)
+* Start a new virtual enviroment for this project.
+* Install required python libraries giving in the requirements.txt file
+    ```bash
+    pip install -r requirements.txt
+    ```
+* Start the develpoment server by running ```./manage.py runserver```
 * Visit [here](http://127.0.0.1:8000/alarm/) (If you haven't changed the default port - 8000)
 
 ##Strategy:
@@ -13,14 +17,12 @@ It is a django-powered web app which can create reminders or alarms just by a si
 
 ##Still To-Do:
 
-* Do something with the timezone, it is getting really getting conusing.
-* Obviously, give it some *better* looks.
-* Add a level of validation for IP and time.
+* ~~Do something with the timezone, it is getting really getting conusing.~~
+* ~~Add a level of validation for IP and time.~~
 * Add an alert message when user tries to close the alarm tab.
 * Add a message input and display it on tha alarm screen for eminding purposes.
 * optimize the code - Use django's template system
-* Design GUI and choose colors.
-* ~~Embed music in pop up so that there is actually an alarm~~
+* Embed music in pop up so that there is actually an alarm
 * ~~Seperate the Javascript and HTML in pop-up.~~
 * Add customization to alarm screen.
 * ~~Make and add a favicon~~
