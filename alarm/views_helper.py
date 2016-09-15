@@ -2,14 +2,13 @@ import datetime
 import unicodedata
 import webbrowser
 import time
-import pytz
 
 from django.shortcuts import render, redirect
 from alarm.models     import Alarm
 from django.utils     import timezone
 from django.utils.timezone import localtime
 
-def check_alarm_time(alarm_time):
+def check(alarm_time):
 	"""
 	Checks if the alarm_time is in future.
 	"""
