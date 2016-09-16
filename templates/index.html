@@ -8,16 +8,22 @@
 		{% endfor %}
 		{% load staticfiles %}
 		<link rel="stylesheet" type="text/css" href="{% static 'alarm/CSS/index.css' %}">
-		<table align = "center" border="0" class="central_table" width = "100%" cellspacing= "10px" border="1">
+		<center>
+		<table border="0" class="central_table" width = "100%" cellspacing= "10px" border="1">
 		<tr>
 		<td width="40%" class = "thought_container">
+			<center>
 			<div class = "thought">
 				<div class = "thought_header"></div>
+				<div class="thought_body" align="left">
 					Nothing valuable can be lost by taking time.
+				</div>
+				<br>
 				<div class = "author">
 					- Abraham Lincoln
 				</div>
 			</div>
+			</center>
 		</td>
 		<td width="50%" align="right" style = "padding-right: 20px;" rowspan="3">
 			<table class="main_form" width = "95%" border="0">
@@ -38,6 +44,7 @@
 							<div class = "prompt">
 								When would you like to be up for work ?
 							</div>
+					</td>
 				</tr>
 				<tr>
 							<td align = "center" width="55%" style="padding-left: 15px;">
@@ -60,10 +67,11 @@
 						<form action="" method = "post">{% csrf_token %}
 							<div class = "prompt">
 								or wanna specify a duration instead: 
-							</div> 
+							</div>
+					</td> 
 				</tr>
 				<tr>
-					<td align = "center" style="padding-left: 15px;"">
+					<td align = "center" style="padding-left: 15px;">
 							<input type="time" name="alarm_duration" value="00:15">
 					</td>
 					<td align = "center">	
@@ -76,24 +84,31 @@
 		</tr>
 		<tr>
 			<td width="40%" class = "thought_container">
+				<center>
 				<div class = "thought">
 					<div class = "thought_header"></div>
-					Better three hours too soon than a minute too late. 
+					<div class="thought_body" align="left">Better three hours too soon than a minute too late.
+					</div>
+					<br>
 					<div class="author">
 						-William Shakespeare
 					</div>
 				</div>
+				</center>
 			</td>
 		</tr>
 		<tr>
 			<td width="40%" class = "thought_container">
+				<center>
 				<div class = "thought">
 					<div class = "thought_header"></div>
-					We must use time wisely and forever realize that the time is always ripe to do right. 
+					<div class="thought_body" align="left"> We must use time wisely and forever realize that the time is always ripe to do right.  
+					</div>
 					<div class="author">
 						-Nelson Mandela
 					</div>
 				</div>
+				</center>
 			</td>
 		</tr>
 		</table>
