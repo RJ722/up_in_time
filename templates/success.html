@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+	{% block body %}
 <!--
 TO - DO:
 ========
@@ -10,15 +12,6 @@ TO - DO:
 * When we reach alarm_time, we can ring the alarm and display text_message if any.
 
 -->
-<HTML>
-	<HEAD>
-		<TITLE>Happy Alarms</TITLE>
-
-		{% load staticfiles %}		
-		<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon"/>
-	</HEAD>
-	
-	<BODY>
 		<h1> Your alarm for {{ alarm_time }} </h1>
 		<p>
 			<BR>
@@ -28,14 +21,11 @@ TO - DO:
 		<p id = "datetime">
 		
 		</p>
-		
+		{% load staticfiles %}
 		<script type="text/javascript">
 			var json_string = unescape("{{ js_data | safe | escapejs }}");
 		</script>
 		<script type="text/javascript" src= "{% static 'alarm/JS/time_module.js' %}"></script>
 
 		<a href = "/alarm"> Set an alarm again </a>
-
-				
-	</BODY>
-</HTML>
+{% endblock %}

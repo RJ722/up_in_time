@@ -1,13 +1,17 @@
 body{
-	background-color: #3d3d29; /*#fff2cc*/
-	margin: 0 auto;
+	margin: 0;
+    /*background-color: #3d3d29; /*#fff2cc*/
+    /*background-color: white;*/
+    margin: 0 auto;
 	font-family : Helvetica;
 	font-size: 19px;
+    color: black;
 }
 
 #main_table{
 	display: block;
-	background-color: #ff3733;
+    border-collapse: collapse;
+	background-color: #009933;
 	border-radius: 2px;
 	box-shadow: 0 7px 7px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
@@ -34,4 +38,87 @@ body{
     background-color: white; /* Green */
     color: black;
     /*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);*/
+}
+
+.nav_button{
+    /*background-color: #ff3733;*/
+    background-color: white;
+    float: right;
+    border: none;
+    border-color: #3d3d29;
+    border-radius: 2px;
+    color: #009933;
+    padding: 5px 5px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: calc(100% - 3em - 2px);
+    height: 60px;
+}
+
+.nav_button:hover {
+    background-color: #3d3d29;
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.nav_button.active{
+    border: solid 2px black;
+    /*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);*/
+}
+
+.header{
+    padding-top: 7px;
+    vertical-align: top;
+    height: 120px;
+}
+
+.nav_links{
+    display: block;
+    height: 5px;
+}
+
+#header_table{
+    /*position: fixed;*/
+    vertical-align: top;
+    display: block;
+    /*height: 40%;*/
+}
+
+.topnav {
+    margin: 0;
+    padding-left: 0;
+    height: 150px;
+    display: block;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);   
+}
+
+.topnav li {float: left;}
+
+.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.topnav li a:hover:not(.active) {background-color: #111;}
+
+.topnav li a.active {background-color: #4CAF50;}
+
+.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px){
+    .topnav li.right, 
+    .topnav li {float: none;}
+}
+
+#nav_bar_right tr{
+    border-collapse: collapse;
 }

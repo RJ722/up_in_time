@@ -8,34 +8,86 @@
 		</title>
 		{% load staticfiles %}
 		<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script type="text/javascript" src = "{% static 'alarm/JS/base.js' %}"></script>
 		{% block main_css %}
 			<link rel="stylesheet" type="text/css" href="{% static 'alarm/CSS/base.css' %}">
 		{% endblock %}
 	</head>
 	<body>
-	<table id = "main_table" width = "85%" border="0" align = "center">
-		<tr width = "100%">
-			<td>
+	<table width="100%" border="0">
+		<tr width = 100%>
+			<td>	
 				{% block header %}
-					This is an empty header template.
+				<table width="100%" bgcolor = "" border="0" cellspacing = "1" id = "header_table" style="margin: 0;">
+					<tr>
+						<td bgcolor = "white" rowspan = "3" width="20%"> 
+						<!--<table border =0"1" class="topnav" width="100%">
+							<tr>
+								{% load staticfiles %}
+								<td>
+									<center><a href = "/alarm"><img src= "{% static 'img/alarm.png' %}" height="80px" width="50%" alt = "Logo-Alarm"></a></center>
+								</td>
+							</tr>
+						</table> -->
+						<a href = "/alarm"><img src= "{% static 'img/alarm.png' %}" height="100%" width="100%" alt = "Logo-Alarm"></a>
+					</td>
+				</tr>
+				<tr>
+					<td><center>
+						<table bgcolor="lightgreen" align="right" border="0" width="100%" id = "nav_bar_right">
+							<tr>
+								<td width="25%">
+								</td>
+								<td>
+								<input type = "button" value="Home" class="nav_button active" onclick="window.location.href='/alarm'">
+								</td>	
+								<td>
+									<input type = "button" value="Contact Us" class="nav_button" onclick="window.location.href='/alarm'">
+								</td>
+								<td>
+									<div class = "right">
+									<input type = "button" value="About" class="nav_button" onclick="window.location.href='/alarm'">
+									</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<br>
+					</td>
+				</tr>
+				</table>
 				{% endblock %}
 			</td>
 		</tr>
-		<tr>
+		<tr>	
 			<td>
-				{% block body %}
-					This is an empty body template.
-				{% endblock %}
+				<table id = "main_table" width = "85%" border="0" align = "center">
+					<tr>
+						<td>
+							<br>
+						</td>						
+					</tr>
+					<tr>
+						<td>
+							{% block body %}
+								This is an empty body template.
+							{% endblock %}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							{% block footer %}
+								This is an empty footer template.
+							{% endblock %}
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
-		<tr>
-			<td>
-				{% block footer %}
-					This is an empty footer template.
-				{% endblock %}
-			</td>
-		</tr>
-	</table>
-		
+	</table>	
 	</body>
 </html>

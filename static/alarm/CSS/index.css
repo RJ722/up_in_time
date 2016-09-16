@@ -1,13 +1,15 @@
 .thought{
 	font-size: 16px;
 	color: #ffe3e3;
+	color: black;
 	width: 78%;
 	padding-top: 8px;
 	padding-left: 30px;
 	padding-right: 30px;
 	padding-bottom: 8px;
-	border-left: 4px solid pink;
-	background-color: #3d3d29;
+	border-left: 4px solid #351473;
+	/*background-color: #3d3d29;*/
+	background-color: lightgreen; /*#ff3733*/
 	display: block;
 	-webkit-transition-duration: 0.5s; /* Safari */
     transition-duration: 0.5s;
@@ -33,9 +35,8 @@
 }
 
 .main_form{
-	/*background-color: #ff3744;*/
 	vertical-align: middle;
-	background-color: #ff3733;
+	/*background-color: #ff3733;*/
 	border-collapse: collapse;
 	border-left: 3px solid #3d3d29;
 	right: 15px;
@@ -46,6 +47,7 @@
 
 .main_form:hover{
 	background-color: #ff3744;
+	/*background-color: #ff3733;*/
 	box-shadow: 0 7px 7px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 	width: 100%;
 	height: 100%
@@ -85,7 +87,7 @@ input{
 .current_time{
 	text-align: center;
 	border-left: 3px solid black;
-	background-color: pink;
+	background-color: #ffffcc;
 }
 
 .request{

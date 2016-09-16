@@ -77,7 +77,7 @@ function call_alert(message) {
   window.alert(message)
 }
 
-var message = "Bhai Alarm Time ho gya hai UtHO BC"
+var message = "Bhai Alarm Time ho gya hai UtHO"
 
 initializeClock(now, alarm_time, call_alert, message);
 
