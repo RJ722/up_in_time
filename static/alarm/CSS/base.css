@@ -14,12 +14,12 @@ body{
 
 .header_main{
     position: fixed;
-    border-bottom: 2px solid green;
+    border-bottom: 2px solid lightgrey;
     /*height: 95px;*/
 }
 
 .header_main .shrink{
-    height: 40px;
+    height: 36px;
 }
 
 #main_table{
@@ -77,7 +77,7 @@ body{
 }
 
 .nav_button .shrink{
-    height: 39px;
+    height: 35px;
 }
 
 .nav_button:hover {
@@ -110,5 +110,6 @@ body{
 }
 
 .footer{
+    border-top: 2px solid grey;
     background-color: #454545;
 }
