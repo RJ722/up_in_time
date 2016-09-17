@@ -1,5 +1,0 @@
-*.pyc
-alarm/*.pyc
-mysite/*.pyc
-alarm/migrations/*.pyc
-alarm/migrations/*.py
