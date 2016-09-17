@@ -1,7 +1,7 @@
 body{
 	margin: 0;
     /*background-color: #3d3d29; /*#fff2cc*/
-    background-color: lightgreen;
+    background-color: white;
     margin: 0 auto;
 	font-family : Helvetica;
 	font-size: 19px;
@@ -14,8 +14,12 @@ body{
 
 .header_main{
     position: fixed;
-    padding-left: 10px;
     border-bottom: 2px solid green;
+    /*height: 95px;*/
+}
+
+.header_main .shrink{
+    height: 40px;
 }
 
 #main_table{
@@ -53,7 +57,7 @@ body{
 
 .nav_button{
     /*background-color: #ff3733;*/
-    background-color: lightgreen;
+    background-color: white;
     float: right;
     border: none;
     border-color: #3d3d29;
@@ -72,6 +76,10 @@ body{
     height: 55px;
 }
 
+.nav_button .shrink{
+    height: 39px;
+}
+
 .nav_button:hover {
     background-color: #3d3d29;
     color: white;
@@ -79,15 +87,10 @@ body{
 }
 
 .nav_button.active{
-    border: solid 2px black;
+    border: solid 1px green;
     /*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);*/
 }
 
-.header{
-    padding-top: 7px;
-    vertical-align: top;
-    height: 120px;
-}
 
 .nav_links{
     display: block;
@@ -103,10 +106,9 @@ body{
 
 #nav_bar_right tr{
     border-collapse: collapse;
-    height: 70px;
+    /*height: 70px;*/
 }
 
 .footer{
-    background-color: #3d3d29;
-
+    background-color: #454545;
 }
