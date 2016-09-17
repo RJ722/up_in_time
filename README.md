@@ -28,8 +28,9 @@ It is a django-powered web app which can create reminders or alarms just by a si
 * ~~Make and add a favicon~~
 * Add contact us, about_us page.
 	
-### Far away:
-* Add functionality like sending automatic emails and messages(look up twillio) at the given time.
-* Make the website responsive.
+## What can be possible potential?
 * Add the facility for the users to add custom Youtube videos or uploaded Audios or audio links to be served as alarm.
-
+* Add functionality like sending automatic emails and messages(look up twillio) at the given time.
+* A simple browser plugin from where user can set ana alarm without even leaving window.
+* Sync across all devices - still don't have any ideas HOW - would love to listen to :) - (HEAD IN THE CLOUD AND FEET ON THE FLOOR) 
+* Setting an alarm for others - requires highly secure enviroment
