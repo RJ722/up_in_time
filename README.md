@@ -5,7 +5,7 @@ It is a django-powered web app which can create reminders or alarms just by a si
 * Make sure you have Python installed (if possible, use 2.x so that you wouldn't have to alter print statements written here and there)
 * Start a new virtual enviroment for this project.
 * Install required python libraries giving in the requirements.txt file
-    ```bash
+    ```
     pip install -r requirements.txt
     ```
 * Start the develpoment server by running ```./manage.py runserver```
