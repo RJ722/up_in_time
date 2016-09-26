@@ -18,7 +18,7 @@
 
 .thought:hover{
 	background-color: white;
-	color: black;
+	color: darkgreen;
 	box-shadow: 0 7px 7px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
@@ -54,20 +54,20 @@
 .main_form:hover{
 	/*background-color: #ff3744;*/
 	/*background-color: #ff3733;*/
-	background-color: #adff2f ;
+	/*background-color: #adff2f;*/
+	background-color: #00b33c;
 	box-shadow: 0 7px 7px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 	width: 100%;
-	height: 100%
 }
 
 .main_form tr{
 	height: 40px;
 }
 
-.main_form tr:hover{
+/*.main_form tr:hover{
 	height:45px;
 }
-
+*/
 
 input{
   border: 1px solid #ccc;	/*Border color*/

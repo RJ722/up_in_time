@@ -1,4 +1,3 @@
-/*
 $(function(){
 	$('.nav_button a').click(function(){
         $('.nav_button .active').removeClass('active'); // remove the class from the currently selected
@@ -6,7 +5,7 @@ $(function(){
     	$(this).addClass('nav_button');
     });
 });
-*/
+
 
 $(window).scroll(function() {
   if ($(document).scrollTop() > 25) {
