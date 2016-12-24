@@ -8,7 +8,7 @@
 		</title>
 		{% load staticfiles %}
 		<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon"/>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="{% static 'alarm/JS/jquery-1.12.4.min.js' %}"></script>
 		<script type="text/javascript" src = "{% static 'alarm/JS/base.js' %}"></script>
 		{% block main_css %}
 			<link rel="stylesheet" type="text/css" href="{% static 'alarm/CSS/base.css' %}">

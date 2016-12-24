@@ -73,11 +73,14 @@ function initializeClock(now, alarm_time, callback, callback_param) {
   var timeinterval = setInterval(updateClock, 1000);
 }
 
-function call_alert(message) { 
+function ring(message) {
+  // This is just a dummy alarm
+  // Upadte this so that it changes hidden tag of some elemdnts on success.html to
+  // be shown as soon as this is achieved.
   window.alert(message)
 }
 
 var message = "Bhai Alarm Time ho gya hai UtHO"
 
-initializeClock(now, alarm_time, call_alert, message);
+initializeClock(now, alarm_time, ring, message);
 

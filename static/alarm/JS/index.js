@@ -65,30 +65,26 @@ function month(now_mon) {
 }
 
 function increase(seconds, minutes, hours, days, id_sec, id_min, id_hour, id_day){
-	var total_seconds = 0;
-	var total_minutes = 0;
-	var total_hours = 0;
-	var total_days = 0;
+	var total_seconds = seconds;
+	var total_minutes = minutes;
+	var total_hours = hours;
+	var total_days = days;
 	function inc() {
-		if(seconds < 59){
-			seconds = seconds + 1;
-			total_seconds = total_seconds + 1;
-			document.getElementById(id_sec).innerHTML = seconds;
+		total_seconds = total_seconds + 1;
+		seconds = total_seconds % 60;
+		document.getElementById(id_sec).innerHTML = seconds;
+		
+		if(seconds == 0){
+			total_minutes = total_minutes + 1;
+			document.getElementById(id_min).innerHTML = total_minutes%60;
 		}
-		if(seconds >= 59){
-			minutes = minutes + 1;
-			document.getElementById(id_min).innerHTML = minutes;
-			seconds = 0;
+		if(total_minutes%60 == 0 && seconds == 0){
+			total_hours = total_hours + 1;
+			document.getElementById(id_hour).innerHTML = total_hours%24;
 		}
-		if(total_seconds >= 3600){
-			hours = hours + 1;
-			document.getElementById(id_hour).innerHTML = hours;
-			minutes = 0;
-		}
-		if(total_seconds > 24*3600){
-			days = days + 1;
-			document.getElementById(id_day).innerHTML = days;
-			hours = 0;
+		if(total_hours%24==0 && total_minutes%60 == 0 && seconds == 0){
+			total_days = total_days + 1;
+			document.getElementById(id_day).innerHTML = total_days%31;
 		}
 	}
 	var timeinterval = setInterval(inc, 1000);
