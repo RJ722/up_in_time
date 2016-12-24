@@ -25,15 +25,26 @@ def alarm(request):
 	"""
 	Validate the input given by the user, report the errors and if no errors found  add it to the database.
 	"""
+	# Create a list for logging all errors in the process
 	errors = []
+
+	# Take the current time, date and month
+	now = localtime(timezone.now())
+	data = {
+			'now_str' : now.strftime("%D:%H:%M:%S"),
+			'now_month' : now.month,
+		   }
+
+	# Create a JSON object for the current and alarm time, so that we can parse it over
+	# in HTML 
+	js_data = json.dumps(data, cls = DjangoJSONEncoder)
+	s_dict = {"now": localtime(timezone.now()), 'errors': errors, 'js_data' : js_data}
+	
+	# Check wether the user has set alarm time or duration:
 	if "alarm_time" in request.POST and request.POST.get("alarm_time", None) != "":
 		# Extract the information about the alarm_time
-		alarm_time_u = request.POST.get("alarm_time", "Not Set")
+		alarm_time = uni_to_str(request.POST.get("alarm_time", "Not Set"))
 		
-		# Convert from unicode to python string
-		alarm_time = uni_to_str(alarm_time_u)
-		print "alarm_time is %s" % (alarm_time)
-
 		# Make datetime objects.
 		try:
 			alarm_time = datetime.datetime.strptime(alarm_time, "%H:%M").time()
@@ -43,10 +54,8 @@ def alarm(request):
 		
 		now = localtime(timezone.now())
 		date_today = now.date()
-		alarm_time = timezone.datetime.combine(date_today, alarm_time)
-		alarm_time = convert_to_utc(alarm_time)
+		alarm_time = convert_to_utc(timezone.datetime.combine(date_today, alarm_time))
 		
-		print "alarm_time_finally is %s" % (alarm_time)
 		# Write it to database
 		check_and_save(request, alarm_time)
 		
@@ -82,7 +91,8 @@ def alarm(request):
 	# If no request.
 	if request.POST.get("alarm_time", None) == "":
 		errors.append("Please enter valid Time")
-	return render(request, "index.html", {"now": localtime(timezone.now()), 'errors': errors,})
+	
+	return render(request, "index.html", s_dict)
 
 def create_alarm(request):
 	"""
