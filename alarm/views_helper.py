@@ -65,16 +65,20 @@ def check_and_save(request, alarm_time):
 	"""
 	ip = get_client_ip(request)
 	current_alarm = None
+	# Extract message (already in str format)
+	message = request.POST.get("main_message", "")
+
 	for alarm in Alarm.objects.all():
 		if ip == alarm.ip_address:
 			current_alarm = alarm
 			break
 
 	if current_alarm == None:
-		current_alarm = Alarm(alarm_time=alarm_time, ip_address=ip)
+		current_alarm = Alarm(alarm_time=alarm_time, ip_address=ip, message = message)
 	else:
 		current_alarm.alarm_time = alarm_time
-
+		current_alarm.message = message 
+		
 	current_alarm.save()
 
 def convert_to_utc(alarm_time):

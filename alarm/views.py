@@ -40,9 +40,7 @@ def alarm(request):
 	js_data = json.dumps(data, cls = DjangoJSONEncoder)
 	s_dict = {"now": localtime(timezone.now()), 'errors': errors, 'js_data' : js_data}
 	
-	#message = uni_to_str(request.POST.get("main_message", ""))
-	message = request.POST.get("main_message", "")
-	print(message)
+	
 	
 	# Check wether the user has set alarm time or duration:
 	if "alarm_time" in request.POST and request.POST.get("alarm_time", None) != "":
@@ -66,7 +64,7 @@ def alarm(request):
 		# Preparing HTML variables.
 		s_dict = {"alarm_time" : alarm_time, 'now' : now}
 		s_dict = check(request, alarm_time, s_dict, errors)
-		
+
 		if not errors:
 			return redirect('/success')
 	
@@ -88,7 +86,7 @@ def alarm(request):
 		# Prepare HTML variables.
 		s_dict = {"alarm_time" : alarm_time, 'now' : now}
 		s_dict = check(request, alarm_time, s_dict, errors)
-		
+
 		if not errors:
 			return redirect('/success')
 	
@@ -107,8 +105,11 @@ def create_alarm(request):
 	for alarm in Alarm.objects.all():
 		if ip == alarm.ip_address:
 			alarm_time = alarm.alarm_time
+			message = alarm.message
 			break
 
+	if not message:
+		message = ""
 	now = timezone.now()
 
 	# Use localtime for display
@@ -122,5 +123,5 @@ def create_alarm(request):
 	# success.html for comparson.
 	
 	js_data = json.dumps(data, cls = DjangoJSONEncoder)
-	s_dict = {"alarm_time" : alarm_time_local, 'now' : now, 'js_data' : js_data}
+	s_dict = {"alarm_time" : alarm_time_local, 'now' : now, 'js_data' : js_data, 'message': message}
 	return render(request, "success.html", s_dict)
