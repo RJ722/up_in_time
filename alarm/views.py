@@ -40,6 +40,10 @@ def alarm(request):
 	js_data = json.dumps(data, cls = DjangoJSONEncoder)
 	s_dict = {"now": localtime(timezone.now()), 'errors': errors, 'js_data' : js_data}
 	
+	#message = uni_to_str(request.POST.get("main_message", ""))
+	message = request.POST.get("main_message", "")
+	print(message)
+	
 	# Check wether the user has set alarm time or duration:
 	if "alarm_time" in request.POST and request.POST.get("alarm_time", None) != "":
 		# Extract the information about the alarm_time

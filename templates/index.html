@@ -43,12 +43,12 @@
 							(<span id="now_days">&nbsp;&nbsp;</span>
 							<span id = "now_month"></span>)
 							</span>
-							<script type="text/javascript" src="{% static 'alarm/JS/index.js' %}"></script> 
+							 
 					</td>
 				</tr>
 				<tr>
 					<td align = "center" colspan="2">	
-						<form action = "" method = "post" >
+						<form action = "" method = "post" id = "time_form">
 							{% csrf_token %}
 							<div class = "prompt">
 								When would you like to be up for work ?
@@ -60,8 +60,9 @@
 								<input type = 'time' name = "alarm_time" value="21:00">
 							</td>
 							<td align = "center" >
-							<input type = "submit" value = "Drag me to bed!" class="button sets_alarm">
-						</form>
+							<input type="text" name="main_message" id = "main_message_time" style = "display: none;">
+						</form>	
+						<button class = "button" id = "open_modal_time">Drag me to bed!</button>
 					</td>
 				</tr>
 				<tr>
@@ -73,7 +74,7 @@
 				</tr>
 				<tr>
 					<td align = "center" colspan="2">
-						<form action="" method = "post">{% csrf_token %}
+						<form action="" method = "post" id = "duration_form">{% csrf_token %}
 							<div class = "prompt">
 								or wanna specify a duration instead: 
 							</div>
@@ -81,11 +82,12 @@
 				</tr>
 				<tr>
 					<td align = "center" style="padding-left: 15px;">
-							<input type="time" name="alarm_duration" value="00:15">
+						<input type="time" name="alarm_duration" value="00:15">
+						<input type="text" name="main_message" id = "main_message_duration" style = "display: none;">
 					</td>
 					<td align = "center">	
-							<input type = "submit" value = "Wake me up" class="button sets_alarm">
-						</form>
+					</form>
+					<button class = "button" id = "open_modal_duration">Wake me up</button>	
 					</td>
 				</tr>
 			</table>
@@ -121,6 +123,31 @@
 			</td>
 		</tr>
 		</table>
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+	  <!-- Modal content -->
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <span class="close">&times;</span>
+		  <h2>Modal Header</h2>
+		</div>
+
+		<div class="modal-body">
+			<label>
+				Would you like to enter any message ?
+			</label>
+			<input type = "text" id="message" name = "message">
+			<button id = "submit_main_form" class="button">SET</button>
+		</div>
+		
+		<div class="modal-footer">
+		  <h3>Modal Footer</h3>
+		</div>
+	  </div>
+	</div>
+
+	<script type="text/javascript" src="{% static 'alarm/JS/index.js' %}"></script>
 	{% endblock %}
 	{% block footer %}
 		<BR> <BR><BR>

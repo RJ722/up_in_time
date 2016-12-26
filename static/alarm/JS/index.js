@@ -109,3 +109,48 @@ document.getElementById('now_minutes').innerHTML = now_min;
 document.getElementById('now_seconds').innerHTML = now_sec;
 document.getElementById('now_month').innerHTML = month_str;
 
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn_time = document.getElementById("open_modal_time");
+var btn_duration = document.getElementById("open_modal_duration");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn_time.onclick = function(){
+	modal.style.display = "block";
+};
+
+btn_duration.onclick = function(){
+	modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+var sbmt_btn = document.getElementById("submit_main_form");
+var time_form = document.getElementsByClassName("time_form");
+var duration_form = document.getElementById("duration_form");
+
+sbmt_btn.onclick = function() {
+	message = document.getElementById("message").value;
+	try{
+		document.getElementById("main_message_time").value = message;
+		time_form.submit();
+	}
+	catch(err){
+		document.getElementById("main_message_duration").value = message;
+		duration_form.submit();
+	}
+}
