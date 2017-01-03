@@ -48,8 +48,7 @@ body{
     transition-duration: 0.4s;
     cursor: pointer;
     width: calc(100% - 3em - 2px);
-    height: calc(100% - 2px);
-    !important;
+    /*height: calc(100% - 4px);*/
 }
 
 .button:hover {
@@ -76,9 +75,9 @@ body{
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
-    width: calc(100% - 3em - 2px);
-    height: 55px;
-    !important;
+    width: calc(100% + 2px) !important;
+    height: 55px !important;
+    
 }
 
 .nav_button .shrink{
@@ -92,7 +91,7 @@ body{
 }
 
 .nav_button.active{
-    border: solid 1px green;
+    /*border: solid 1px green;*/
     !important;
     /*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);*/
 }
@@ -119,7 +118,7 @@ body{
 }
 
 .footer{
-    border-top: 2px solid grey;
+    border-top: 4px solid white;
     background-color: #434a50;
     !important;
 }

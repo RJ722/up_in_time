@@ -109,7 +109,7 @@ document.getElementById('now_minutes').innerHTML = now_min;
 document.getElementById('now_seconds').innerHTML = now_sec;
 document.getElementById('now_month').innerHTML = month_str;
 
-var modal = document.getElementById('myModal');
+var my_modal = document.getElementById("message_modal");
 
 // Get the button that opens the modal
 var btn_time = document.getElementById("open_modal_time");
@@ -120,26 +120,30 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
 btn_time.onclick = function(){
-	modal.style.display = "block";
+	document.getElementById('message_modal').style.display = "block";
+	console.log("Yes, I am still there, pop up should open up now!.")
 };
 
 btn_duration.onclick = function(){
-	modal.style.display = "block";
+	my_modal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-    modal.style.display = "none";
+    my_modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target == my_modal) {
+        my_modal.style.display = "none";
     }
 }
 
+// Get the button on the modak which then submits the required form.
 var sbmt_btn = document.getElementById("submit_main_form");
+
+// Get both of the forms on the page.
 var time_form = document.getElementById("time_form");
 var duration_form = document.getElementById("duration_form");
 
