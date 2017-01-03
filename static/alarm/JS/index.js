@@ -140,7 +140,7 @@ window.onclick = function(event) {
 }
 
 var sbmt_btn = document.getElementById("submit_main_form");
-var time_form = document.getElementsByClassName("time_form");
+var time_form = document.getElementById("time_form");
 var duration_form = document.getElementById("duration_form");
 
 sbmt_btn.onclick = function() {
@@ -150,6 +150,7 @@ sbmt_btn.onclick = function() {
 		time_form.submit();
 	}
 	catch(err){
+		console.log("Not quite right!  ");
 		document.getElementById("main_message_duration").value = message;
 		duration_form.submit();
 	}

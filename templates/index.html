@@ -8,11 +8,14 @@
 		{% endfor %}
 		{% load staticfiles %}
 		<link rel="stylesheet" type="text/css" href="{% static 'alarm/CSS/index.css' %}">
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet"> 
+    	<link rel="stylesheet" type="text/css" media="screen"
+     href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
 		<script type="text/javascript">
 			var json_string = unescape("{{ js_data | safe | escapejs }}");
 		</script>
 		<center>
-		<table border="0" class="central_table" width = "100%" cellspacing= "10px" border="1">
+		<table class="central_table" width = "100%" cellspacing= "10px" border="0">
 		<tr>
 		<td width="40%" class = "thought_container">
 			<center>
@@ -37,7 +40,7 @@
 				</tr>
 				<tr>
 					<td align = "center" colspan="2" class = "current_time">
-							<span class="current_time_text" border="2">
+							<span class="current_time_text" border="0">
 								It's now:
 										<span id="now_hours"></span>:<span id="now_minutes"></span>:<span id="now_seconds"></span>
 							(<span id="now_days">&nbsp;&nbsp;</span>
@@ -57,7 +60,12 @@
 				</tr>
 				<tr>
 							<td align = "center" width="55%" style="padding-left: 15px;">
-								<input type = 'time' name = "alarm_time" value="21:00">
+								    <div id="datetimepicker" class="input-append date">
+      									<input type="text" name="alarm_time" id = "date_and_time"></input>
+     										<span class="add-on">
+     											<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+     										</span>
+     								</div>
 							</td>
 							<td align = "center" >
 							<input type="text" name="main_message" id = "main_message_time" style = "display: none;">
@@ -148,6 +156,22 @@
 	</div>
 
 	<script type="text/javascript" src="{% static 'alarm/JS/index.js' %}"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script> 
+    <script type="text/javascript"
+     src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+    </script>
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+    </script>
+    <script type="text/javascript">
+    		$('#datetimepicker').datetimepicker({
+        	format: 'dd/MM/yyyy hh:mm:ss',
+      });
+    </script>
 	{% endblock %}
 	{% block footer %}
 		<BR> <BR><BR>

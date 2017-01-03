@@ -39,9 +39,7 @@ def alarm(request):
 	# in HTML 
 	js_data = json.dumps(data, cls = DjangoJSONEncoder)
 	s_dict = {"now": localtime(timezone.now()), 'errors': errors, 'js_data' : js_data}
-	
-	
-	
+
 	# Check wether the user has set alarm time or duration:
 	if "alarm_time" in request.POST and request.POST.get("alarm_time", None) != "":
 		# Extract the information about the alarm_time
@@ -49,15 +47,14 @@ def alarm(request):
 		
 		# Make datetime objects.
 		try:
-			alarm_time = datetime.datetime.strptime(alarm_time, "%H:%M").time()
+			alarm_time = datetime.datetime.strptime(alarm_time, "%d/%m/%Y %H:%M:%S")
 		except ValueError:
 			errors.append("Please enter valid time.")
+			print "Please enter valid time."
 			return render(request, "index.html", {'errors' : errors})
 		
-		now = localtime(timezone.now())
-		date_today = now.date()
-		alarm_time = convert_to_utc(timezone.datetime.combine(date_today, alarm_time))
-		
+		alarm_time = convert_to_utc(alarm_time)
+		print "alarm_time is %s \n\n\n\n" % alarm_time 	##########
 		# Write it to database
 		check_and_save(request, alarm_time)
 		
