@@ -121,10 +121,17 @@ btn_time.onclick = function(){
 	my_modal_time.style.display = "block";
 };
 
+$(document).keyup(function(e) {
+	console.log("escape key pressed!")
+		if (e.keyCode === 27) {
+			$('#message_modal_duration').css("display", "none");
+			$('#message_modal_time').css("display", "none");
+
+	}
+});
+
 btn_duration.onclick = function(){
 	my_modal_duration.style.display = "block";
-	console.log("Yes, I am still there, pop up should open up now!.");
-	console.log("Time picked: " + document.getElementById('date_and_time_duration').value);
 };
 
 // When the user clicks on <span> (x), close the modal
