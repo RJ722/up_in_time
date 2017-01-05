@@ -116,24 +116,29 @@ var my_modal_duration = document.getElementById("message_modal_duration");
 var btn_time = document.getElementById("open_modal_time");
 var btn_duration = document.getElementById("open_modal_duration");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
 // When the user clicks the button, open the modal 
 btn_time.onclick = function(){
 	my_modal_time.style.display = "block";
 };
 
+$(document).keyup(function(e) {
+	console.log("escape key pressed!")
+		if (e.keyCode === 27) {
+			$('#message_modal_duration').css("display", "none");
+			$('#message_modal_time').css("display", "none");
+
+	}
+});
+
 btn_duration.onclick = function(){
 	my_modal_duration.style.display = "block";
-	console.log("Yes, I am still there, pop up should open up now!.");
-	console.log("Time picked: " + document.getElementById('date_and_time_duration').value);
 };
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    my_modal.style.display = "none";
-}
+$('.close').click(function() {
+    my_modal_time.style.display = "none";
+    my_modal_duration.style.display = "none";
+});
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
