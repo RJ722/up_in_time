@@ -116,9 +116,6 @@ var my_modal_duration = document.getElementById("message_modal_duration");
 var btn_time = document.getElementById("open_modal_time");
 var btn_duration = document.getElementById("open_modal_duration");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
 // When the user clicks the button, open the modal 
 btn_time.onclick = function(){
 	my_modal_time.style.display = "block";
@@ -131,9 +128,10 @@ btn_duration.onclick = function(){
 };
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    my_modal.style.display = "none";
-}
+$('.close').click(function() {
+    my_modal_time.style.display = "none";
+    my_modal_duration.style.display = "none";
+});
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
