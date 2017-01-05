@@ -67,16 +67,27 @@ def alarm(request):
 	
 	elif "alarm_duration" in request.POST:
 		# Extract the information about the alarm_time
-		duration_u = request.POST.get("alarm_duration", "Not Set")
-		
+		duration = uni_to_str(request.POST.get("alarm_duration", "Not Set"))
+		print "Duration is %s" % duration
 		# Convert from unicode to python string
-		duration = uni_to_str(duration_u)
-		(alarm_hours, alarm_minutes) = get_alarm_time_from_duration(duration)
+		try:
+			duration = datetime.datetime.strptime(duration, "%d/%m/%Y %H:%M:%S")
+			print "Duration after extraction is %s" % duration
+		except ValueError:
+			errors.append("Please enter valid time. NO STRPTIME ")
+			print "Please enter valid time. NO STRPTIME "
+			return render(request, "index.html", {'errors' : errors})
 		
 		# Create time objects
-		now = timezone.now()
-		alarm_time = now + datetime.timedelta(hours = alarm_hours, minutes = alarm_minutes)
-		
+		now = datetime.datetime.now()
+		alarm_time = now + datetime.timedelta(hours = duration.hour, minutes = duration.minute, seconds = duration.second)
+		print "alarm_time in local time is %s" % alarm_time
+
+		# Convert time from local to UTC timezone
+		alarm_time = convert_to_utc(alarm_time)
+
+		print "Now(UTC) is: %s and alarm_time in UTC is %s" % (convert_to_utc(now), alarm_time)
+		print "Message is %s" % (request.POST.get("main_message", ""))
 		# Save the ip and time in database
 		check_and_save(request, alarm_time)	
 		
@@ -90,7 +101,7 @@ def alarm(request):
 	# If no request.
 	if request.POST.get("alarm_time", None) == "":
 		errors.append("Please enter valid Time")
-	
+
 	return render(request, "index.html", s_dict)
 
 def create_alarm(request):

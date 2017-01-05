@@ -51,15 +51,15 @@
 				<tr>
 					<td align = "center" colspan="2">	
 						<form action = "" method = "post" id = "time_form">{% csrf_token %}
-							<div class = "prompt">
+							<div class = "prompt"><BR>
 								When would you like to be up for work ?
 							</div>
 					</td>
 				</tr>
 				<tr>
 							<td align = "center" width="55%" style="padding-left: 15px;">
-								    <div id="datetimepicker" class="input-append date">
-      									<input type="text" name="alarm_time" id = "date_and_time"></input>
+								    <div id="datetimepicker_time" class="input-append date">
+      									<input type="text" name="alarm_time" id = "date_and_time_time"></input>
      										<span class="add-on">
      											<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
      										</span>
@@ -74,14 +74,19 @@
 				<tr>
 					<td align = "center" colspan="2">
 						<form action="" method = "post" id = "duration_form">{% csrf_token %}
-							<div class = "prompt">
-								or wanna specify a duration instead: 
+							<div class = "prompt"><BR>
+								Or You need a TIMER: 
 							</div>
 					</td> 
 				</tr>
 				<tr>
 					<td align = "center" style="padding-left: 15px;">
-						<input type="time" name="alarm_duration" value="00:15">
+					    <div id="datetimepicker_duration" class="input-append date">
+							<input type="text" name="alarm_duration" id = "date_and_time_duration"></input>
+							<span class="add-on">
+								<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+							</span>
+						</div>
 						<input type="text" name="main_message" id = "main_message_duration" style = "display: none;">
 					</td>
 					<td align = "center">	
@@ -122,8 +127,9 @@
 			</td>
 		</tr>
 		</table>
-	<!-- The Modal -->
-	<div id="message_modal" class="my_modal">
+	
+	<!-- The Time Message Modal -->
+	<div id="message_modal_time" class="my_modal">
 
 	  <!-- Modal content -->
 	  <div class="my_modal_content">
@@ -136,8 +142,32 @@
 			<label>
 				Would you like to enter any message ?
 			</label>
-			<input type = "text" id="message" name = "message">
-			<button id = "submit_main_form" class="button">SET</button>
+			<input type = "text" id="message_time" name = "message">
+			<button id = "submit_time_form" class="button">SET</button>
+		</div>
+		
+		<div class="my_modal_footer">
+		  <h3>Modal Footer</h3>
+		</div>
+	  </div>
+	</div>
+
+	<!-- The Duration Message Modal -->
+	<div id="message_modal_duration" class="my_modal">
+
+	  <!-- Modal content -->
+	  <div class="my_modal_content">
+		<div class="my_modal_header">
+		  <span class="close">&times;</span>
+		  <h2>Modal Header</h2>
+		</div>
+
+		<div class="my_modal_body">
+			<label>
+				Would you like to enter any message ?
+			</label>
+			<input type = "text" id="message_duration" name = "message">
+			<button id = "submit_duration_form" class="button">SET</button>
 		</div>
 		
 		<div class="my_modal_footer">
@@ -159,8 +189,12 @@
      src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
     </script>
     <script type="text/javascript">
-    		$('#datetimepicker').datetimepicker({
+    		$('#datetimepicker_time').datetimepicker({
         	format: 'dd/MM/yyyy hh:mm:ss',
+      });
+    		$('#datetimepicker_duration').datetimepicker({
+        	format: 'dd/MM/yyyy hh:mm:ss',
+        	pickDate: false,
       });
     </script>
 	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">

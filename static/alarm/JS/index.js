@@ -109,7 +109,8 @@ document.getElementById('now_minutes').innerHTML = now_min;
 document.getElementById('now_seconds').innerHTML = now_sec;
 document.getElementById('now_month').innerHTML = month_str;
 
-var my_modal = document.getElementById("message_modal");
+var my_modal_time = document.getElementById("message_modal_time");
+var my_modal_duration = document.getElementById("message_modal_duration");
 
 // Get the button that opens the modal
 var btn_time = document.getElementById("open_modal_time");
@@ -120,12 +121,13 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
 btn_time.onclick = function(){
-	document.getElementById('message_modal').style.display = "block";
-	console.log("Yes, I am still there, pop up should open up now!.")
+	my_modal_time.style.display = "block";
 };
 
 btn_duration.onclick = function(){
-	my_modal.style.display = "block";
+	my_modal_duration.style.display = "block";
+	console.log("Yes, I am still there, pop up should open up now!.");
+	console.log("Time picked: " + document.getElementById('date_and_time_duration').value);
 };
 
 // When the user clicks on <span> (x), close the modal
@@ -135,27 +137,34 @@ span.onclick = function() {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == my_modal) {
-        my_modal.style.display = "none";
+    if (event.target == my_modal_time) {
+        my_modal_time.style.display = "none";
+    }
+    if (event.target == my_modal_duration){
+    	my_modal_duration.style.display = "none";
     }
 }
 
 // Get the button on the modak which then submits the required form.
-var sbmt_btn = document.getElementById("submit_main_form");
+var sbmt_btn_time = document.getElementById("submit_time_form");
+var sbmt_btn_duration = document.getElementById("submit_duration_form");
 
 // Get both of the forms on the page.
 var time_form = document.getElementById("time_form");
 var duration_form = document.getElementById("duration_form");
 
-sbmt_btn.onclick = function() {
-	message = document.getElementById("message").value;
-	try{
-		document.getElementById("main_message_time").value = message;
-		time_form.submit();
+sbmt_btn_time.onclick = function() {
+	message = document.getElementById("message_time").value;
+	document.getElementById("main_message_time").value = message;
+	time_form.submit();
+	console.log("Time form is submitted!")
 	}
-	catch(err){
-		console.log("Not quite right!  ");
-		document.getElementById("main_message_duration").value = message;
-		duration_form.submit();
-	}
+
+sbmt_btn_duration.onclick = function() {
+	message = document.getElementById("message_duration").value;
+	document.getElementById("main_message_duration").value = message;
+	console.log("Original message: " + message);
+	console.log("After copying: " + document.getElementById("main_message_duration").value)
+	duration_form.submit();
+	console.log("Duration form is submited");
 }
