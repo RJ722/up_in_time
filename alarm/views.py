@@ -59,7 +59,9 @@ def alarm(request):
 		check_and_save(request, alarm_time)
 		
 		# Preparing HTML variables.
-		s_dict = {"alarm_time" : alarm_time, 'now' : now}
+		s_dict["alarm_time"] = alarm_time 
+		s_dict['now'] = now
+		s_dict["errors"] = []
 		s_dict = check(request, alarm_time, s_dict, errors)
 
 		if not errors:
@@ -92,7 +94,7 @@ def alarm(request):
 		check_and_save(request, alarm_time)	
 		
 		# Prepare HTML variables.
-		s_dict = {"alarm_time" : alarm_time, 'now' : now}
+		s_dict = {"alarm_time" : alarm_time, 'now' : now, "errors" : [], }
 		s_dict = check(request, alarm_time, s_dict, errors)
 
 		if not errors:
