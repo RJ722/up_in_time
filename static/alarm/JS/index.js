@@ -1,3 +1,4 @@
+/*
 var data = JSON.parse(json_string);
 
 var now = data.now_str;
@@ -108,6 +109,24 @@ document.getElementById('now_hours').innerHTML = now_hr;
 document.getElementById('now_minutes').innerHTML = now_min;
 document.getElementById('now_seconds').innerHTML = now_sec;
 document.getElementById('now_month').innerHTML = month_str;
+*/
+
+function display_c(){
+	var refresh=1000; // Refresh rate in milli seconds
+	mytime=setTimeout('display_ct()',refresh);
+}
+
+function display_ct() {
+	console.log("display_ct is now being executed!")
+	var strcount;
+	var x = new Date();
+	document.getElementById('ct').innerHTML = x;
+	tt=display_c();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    display_ct();
+}, false);
 
 var my_modal_time = document.getElementById("message_modal_time");
 var my_modal_duration = document.getElementById("message_modal_duration");

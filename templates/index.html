@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 	{% block body %}
+	<div id = "main" onload=display_ct();>
 		{% for error in errors %}
 			<div class = "error modal">
 				<font color="red">{{error}}</font>
@@ -38,10 +39,16 @@
 					</th>
 				</tr>
 				<tr>
-					<td align = "center" colspan="2" class = "current_time">
-							<span class="current_time_text" border="0">
+					<td align = "center" colspan="2" class = "current_time" onload=display_ct();>
+							<!--<span class="current_time_text" border="0">
 								It's now:
-										<span id="now_hours"></span>:<span id="now_minutes"></span>:<span id="now_seconds"></span>
+									<span id="now_hours"></span>:<span id="now_minutes"></span>:<span id="now_seconds"></span>
+							(<span id="now_days">&nbsp;&nbsp;</span>
+							<span id = "now_month"></span>)
+							</span> -->
+							<span id="ct" class="current_time_text">
+								It's now:
+									<span id="now_hours"></span>:<span id="now_minutes"></span>:<span id="now_seconds"></span>
 							(<span id="now_days">&nbsp;&nbsp;</span>
 							<span id = "now_month"></span>)
 							</span>
@@ -198,6 +205,7 @@
       });
     </script>
 	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+	</div>
 	{% endblock %}
 	{% block footer %}
 		<BR> <BR><BR>
