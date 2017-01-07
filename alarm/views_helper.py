@@ -24,9 +24,10 @@ def check(request, alarm_time, s_dict, errors):
 	A wrapper around check_alarm_time.
 	"""
 	if not check_alarm_time(alarm_time):
-		error = "Please Enter a future time"
+		error = "Please enter a future Time"
 		errors.append(error)
-		s_dict["errors"] = error
+		s_dict["errors"].append(error)
+		print "Final s_dict is %s" % s_dict
 		return s_dict
 
 def uni_to_str(uni):
