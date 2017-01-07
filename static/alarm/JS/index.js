@@ -132,7 +132,8 @@ btn_duration.onclick = function(){
 		if (e.keyCode === 13) {
 			$('#submit_duration_form').click();
 	}
-};
+});
+}
 
 $(document).keyup(function(e) {
 		if (e.keyCode === 27) {
