@@ -25,6 +25,7 @@ var btn_duration = document.getElementById("open_modal_duration");
 // When the user clicks the button, open the modal 
 btn_time.onclick = function(){
 	my_modal_time.style.display = "block";
+	$('#message_time').focus();
 	$(document).keyup(function(e) {
 		if (e.keyCode === 13) {
 			$('#submit_time_form').click();
@@ -34,6 +35,7 @@ btn_time.onclick = function(){
 
 btn_duration.onclick = function(){
 	my_modal_duration.style.display = "block";
+	$('#message_duration').focus();
 	$(document).keyup(function(e) {
 		if (e.keyCode === 13) {
 			$('#submit_duration_form').click();
