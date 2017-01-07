@@ -128,7 +128,10 @@ btn_time.onclick = function(){
 
 btn_duration.onclick = function(){
 	my_modal_duration.style.display = "block";
-	
+	$(document).keyup(function(e) {
+		if (e.keyCode === 13) {
+			$('#submit_duration_form').click();
+	}
 };
 
 $(document).keyup(function(e) {
