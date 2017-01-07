@@ -27,6 +27,7 @@ def check(request, alarm_time, s_dict, errors):
 		error = "Please enter a future Time"
 		errors.append(error)
 		s_dict["errors"].append(error)
+		print "Final s_dict is %s" % s_dict
 		return s_dict
 
 def uni_to_str(uni):
